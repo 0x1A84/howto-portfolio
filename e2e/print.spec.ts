@@ -134,10 +134,10 @@ test.describe('화면', () => {
     expect(await page.evaluate(() => (window as unknown as { printed: number }).printed)).toBe(1);
   });
 
-  test('스크립트를 꺼도 모든 섹션을 읽을 수 있다 (NFR-02)', async ({ browser }) => {
-    const context = await browser.newContext({ javaScriptEnabled: false });
+  test('스크립트를 꺼도 모든 섹션을 읽을 수 있다 (NFR-02)', async ({ browser, baseURL }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, baseURL });
     const page = await context.newPage();
-    await page.goto('http://127.0.0.1:4300/');
+    await page.goto('./');
     for (const title of SECTION_TITLES) {
       await expect(page.getByRole('heading', { level: 2, name: title })).toBeVisible();
     }

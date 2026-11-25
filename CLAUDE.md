@@ -109,6 +109,44 @@ playwright-report/
 - 기능 작업은 `feat/<기능명>`, 수정은 `fix/<내용>` 브랜치에서 진행한 뒤 `main`에 합칩니다.
 - 사용자가 요청하지 않으면 커밋하거나 푸시하지 않습니다.
 
+## 배포
+
+같은 페이지를 두 저장소의 GitHub Pages로 배포합니다. 소스는 `howto-portfolio` 저장소의 `main` 하나뿐이고, `0x1A84.github.io` 저장소에는 빌드 결과만 올립니다.
+
+| 주소 | 저장소 | 배포 브랜치 | 빌드 명령 |
+| --- | --- | --- | --- |
+| https://0x1a84.github.io/howto-portfolio/ | `0x1A84/howto-portfolio` | `gh-pages` | `npm run build:pages` (`baseHref: /howto-portfolio/`) |
+| https://0x1a84.github.io/ | `0x1A84/0x1A84.github.io` | `main` | `npm run build` (`baseHref: /`) |
+
+### 규칙
+
+- 배포는 외부에 공개되는 작업이므로 사용자가 요청할 때만 합니다.
+- 두 사이트에는 항상 같은 소스 커밋으로 만든 빌드를 함께 올립니다. 한쪽만 갱신하지 않습니다.
+- `0x1A84.github.io` 저장소의 파일은 직접 고치지 않습니다. 고칠 내용은 `howto-portfolio`의 소스에서 고친 뒤 다시 빌드해 올립니다.
+- 빌드 결과에는 Jekyll 처리를 막는 빈 `.nojekyll` 파일을 넣습니다.
+- 배포 커밋 메시지는 `deploy: <소스 커밋 해시> 빌드 결과`로 씁니다.
+- `references/`는 개인 정보가 있어 어느 저장소에도 올리지 않습니다 (`.gitignore`).
+
+### 수동 배포 (현재 방식)
+
+자동 배포를 켜기 전까지는 아래 순서로 직접 배포합니다. 두 빌드 모두 PDF 생성과 e2e 테스트를 통과해야 올립니다.
+
+1. 소스를 `howto-portfolio`의 `main`에 푸시합니다.
+2. `npm run build:pages && npm run export:pdf && npm run test:e2e`로 만든 `dist/howto-portfolio/browser`를 `howto-portfolio` 저장소의 `gh-pages` 브랜치에 강제 푸시합니다.
+3. `npm run build && npm run export:pdf && npm run test:e2e`로 다시 빌드한 `dist/howto-portfolio/browser`를 `0x1A84.github.io` 저장소의 `main` 브랜치에 강제 푸시합니다.
+4. `gh-pages`나 `main`을 처음 만든 직후처럼 Pages 빌드가 시작되지 않으면 `gh api -X POST repos/<저장소>/pages/builds`로 빌드를 요청합니다.
+5. 두 주소에서 페이지, 이미지, `files/portfolio.pdf`가 200으로 응답하고 콘솔 오류가 없는지 확인합니다.
+
+### 자동 배포 (준비 중)
+
+`.github/workflows/deploy.yml`은 `howto-portfolio`의 `main`에 푸시하면 빌드, PDF 생성, e2e 테스트를 거쳐 `/howto-portfolio/` 사이트를 배포합니다. 이 파일은 아직 원격에 올리지 못했습니다. 켜려면 다음이 필요합니다.
+
+1. 사용자가 터미널에서 `gh auth refresh -h github.com -s workflow`를 실행해 토큰에 `workflow` 권한을 줍니다. 이 권한이 없으면 `.github/workflows/` 파일이 들어간 푸시는 거절됩니다.
+2. 워크플로를 푸시한 뒤 `howto-portfolio`의 Pages 배포 방식을 `gh-pages` 브랜치에서 GitHub Actions로 바꿉니다 (`gh api -X PUT repos/0x1A84/howto-portfolio/pages -f build_type=workflow`).
+3. `0x1A84.github.io`에도 자동으로 올리려면, 워크플로에 기본 경로(`npm run build`)로 다시 빌드해 그 저장소의 `main`에 푸시하는 작업을 추가합니다. 다른 저장소에 푸시하려면 `0x1A84.github.io`에만 쓰기 권한이 있는 fine-grained 토큰이나 배포 키를 `howto-portfolio`의 Actions 시크릿으로 등록해야 합니다. 토큰을 만들고 등록하는 일은 사용자가 합니다.
+
+자동 배포를 켠 뒤에는 이 절의 "수동 배포"를 지우고, 표의 배포 브랜치를 실제 방식에 맞게 고칩니다.
+
 ## 파일 작성 규칙
 
 ### 공통

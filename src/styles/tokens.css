@@ -18,7 +18,7 @@
   --color-field-rule: oklch(58% 0.16 266);
   --font-display: "Radio Canada Big", "Pretendard", ui-sans-serif, system-ui, sans-serif; --font-body: "Pretendard", ui-sans-serif, system-ui, sans-serif;
   --font-outlier: var(--font-display);
-  --radius-card: 16px; --radius-pill: 0; --rule-hair: 1px; --shadow-card: none;
+  --rule-hair: 1px; --shadow-card: none;
   --tracking-display: -0.035em; --display-weight: 700;
   --color-slab: var(--color-ink); --color-slab-ink: var(--color-paper); --color-slab-mark: oklch(74% 0.15 29);
   --color-tag-edge: oklch(72% 0.012 266);

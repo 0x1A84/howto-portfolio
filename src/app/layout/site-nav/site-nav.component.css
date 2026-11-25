@@ -26,11 +26,19 @@
   text-decoration: none;
 }
 
-.site-nav__wordmark::before {
-  content: "";
-  width: 0.75em;
-  aspect-ratio: 1;
-  background: var(--color-mark);
+/* 개인 로고(Grid 2×2, public/favicon.svg와 같은 모양). 잉크 슬래브 위라 네모는 슬래브 글자색으로 칠합니다. */
+.site-nav__logo {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.site-nav__logo-body {
+  fill: var(--color-slab-ink);
+}
+
+.site-nav__logo-mark {
+  fill: var(--color-mark);
 }
 
 .site-nav__list {

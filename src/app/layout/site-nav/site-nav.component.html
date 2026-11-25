@@ -1,6 +1,12 @@
 <nav class="site-nav screen-only" [attr.aria-label]="ui().navLabel">
   <div class="container site-nav__bar">
-    <a class="site-nav__wordmark" [routerLink]="[]" fragment="top" lang="en">{{ title() }}</a>
+    <a class="site-nav__wordmark" [routerLink]="[]" fragment="top" lang="en">
+      <svg class="site-nav__logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <path class="site-nav__logo-body" fill-rule="evenodd" d="M4 4h42v42H4ZM54 4h42v42H54ZM4 54h42v42H4Z" />
+        <circle class="site-nav__logo-mark" cx="75" cy="75" r="21" />
+      </svg>
+      {{ title() }}
+    </a>
     <ul class="site-nav__list" role="list">
       @for (section of sections(); track section.id) {
         <li>

@@ -35,7 +35,7 @@ export const PORTFOLIO: Portfolio = {
       height: 264,
     },
     mobileIntro: { title: 'Fashionable Engineer', detail: '한국어·영어 고객 응대' },
-    tagline: 'Massimo Dutti와 Zara 매장에서 고객을 맞았고, AI 도구를 업무에 능숙하게 활용합니다.',
+    tagline: 'Massimo Dutti와 Zara 매장에서 손님을 맞았고, 일할 때는 AI 도구를 익숙하게 씁니다.',
     summary:
       'Massimo Dutti 잠실에서 Fashion Advisor로 일하며 한국어와 영어로 고객을 응대했고, 상품 입출고와 진열, 포장과 발송을 맡았습니다. Zara에서는 Rebajas 시즌에 강남 매장 운영과 하남 스타필드 매장 판매를 보조했습니다. 그 전에는 소프트웨어 회사에서 Angular로 웹 화면을 만들고 QA를 맡았습니다. 지금은 두 경험을 묶어 Massimo Dutti 상품을 런웨이 룩과 비교하는 기능, 매장 온보딩과 개인 근무기록 기능을 만들고 있습니다. Massimo Dutti 매장에서 다시 고객을 맞고 매장 운영을 돕고 싶습니다.',
     links: [

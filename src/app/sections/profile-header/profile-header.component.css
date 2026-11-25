@@ -171,6 +171,8 @@
   width: 8rem;
   margin-bottom: var(--space-lg);
   border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-card);
+  overflow: hidden;
   isolation: isolate;
   line-height: 0;
 }

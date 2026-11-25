@@ -5,11 +5,13 @@ const SECTION_TITLES = ['경력', '역량', '프로젝트', '학력'];
 
 test.describe('화면', () => {
   for (const width of [360, 1280]) {
-    test(`${width}px 너비에서 가로 스크롤이 없다`, async ({ page }) => {
+    test(`${width}px에서 가로 스크롤 없이 사진과 인쇄 버튼 모서리를 둥글게 표시한다`, async ({ page }) => {
       await page.setViewportSize({ width, height: 800 });
       await page.goto('./');
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
       expect(scrollWidth).toBeLessThanOrEqual(width);
+      await expect(page.locator('.profile__photo')).toHaveCSS('border-radius', '16px');
+      await expect(page.locator('.profile__actions button')).toHaveCSS('border-radius', '16px');
     });
   }
 

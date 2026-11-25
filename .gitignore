@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+dist/
+.angular/
+test-results/
+playwright-report/
+.env
+.env.*
+*.log
+.vscode/
+.idea/
+
+# 개인 정보가 담긴 원본 자료(이력서 PDF 등). 공개 저장소에 올리지 않습니다.
+references/

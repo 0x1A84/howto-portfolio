@@ -157,6 +157,7 @@
 }
 
 .profile__summary {
+  --profile-photo-gradient: linear-gradient(160deg, var(--color-photo-tint-from) 15%, var(--color-photo-tint-to) 95%);
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap-columns);
@@ -190,9 +191,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, var(--color-photo-tint-from) 15%, var(--color-photo-tint-to) 95%);
+  background: var(--profile-photo-gradient);
   mix-blend-mode: lighten;
   pointer-events: none;
+}
+
+.profile__mobile-intro {
+  display: none;
 }
 
 .profile__summary p {
@@ -219,6 +224,17 @@
     display: none;
   }
 
+  .profile__credit {
+    grid-row: 4;
+    margin: 0 0 var(--space-sm);
+    color: var(--color-field-ink);
+    text-align: end;
+  }
+
+  .profile__credit a:focus-visible {
+    outline-color: var(--color-field-ink);
+  }
+
   .profile__name,
   .profile__tagline,
   .profile__actions {
@@ -239,7 +255,7 @@
 
   .profile__actions {
     grid-row: 3;
-    padding-bottom: var(--space-lg);
+    padding-bottom: var(--space-xl);
   }
 
   .profile__actions app-print-button {
@@ -258,31 +274,43 @@
     grid-row: 5;
   }
 
-  .profile__credit {
-    grid-row: 4;
-    margin: 0 0 var(--space-sm);
-    color: var(--color-field-ink);
-    text-align: end;
-  }
-
-  .profile__credit a:focus-visible {
-    outline-color: var(--color-field-ink);
-  }
-
   .profile__summary {
-    display: flow-root;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    row-gap: var(--space-lg);
   }
 
   .profile__photo {
-    float: left;
-    width: clamp(4.5rem, 24cqw, 8rem);
-    margin: 0 var(--space-md) var(--space-xs) 0;
+    grid-column: 1;
+    width: clamp(4.5rem, 25cqw, 8rem);
+    margin: 0;
   }
 
-  .profile__summary p {
-    max-width: none;
-    font-size: calc(var(--text-md) + 2px);
+  .profile__mobile-intro {
+    grid-column: 2;
+    justify-self: start;
+    display: grid;
+    gap: var(--space-2xs);
+    font-size: calc(var(--text-sm) + 4px);
+    font-weight: 500;
+    line-height: 1.3;
     overflow-wrap: anywhere;
+  }
+
+  .profile__mobile-intro strong {
+    font-family: var(--font-display);
+    font-size: calc(var(--text-lg) + 4px);
+    line-height: 1.15;
+  }
+
+  @supports (background-clip: text) {
+    @media (forced-colors: none) {
+      .profile__mobile-intro {
+        background-image: var(--profile-photo-gradient);
+        background-clip: text;
+        color: transparent;
+      }
+    }
   }
 }
 

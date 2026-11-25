@@ -2,16 +2,15 @@
   <div class="container site-footer__inner">
     <p class="site-footer__sign">Thanks for reading.</p>
     <p class="site-footer__colophon">
-      Last updated <time [attr.datetime]="updatedAt()">{{ updatedAt() | enDate }}</time>.<span class="site-footer__source">
-        &ngsp;Built with Angular from a single source, kept on
-        <a
-          [href]="repoUrl()"
-          [attr.data-print-text]="repoUrl().replace('https://', '')"
-          target="_blank"
-          rel="noopener noreferrer"
-          >GitHub</a
-        >.</span
-      >
+      Last updated <time [attr.datetime]="updatedAt()">{{ updatedAt() | enDate }}</time>. Built with Angular from a
+      single source, kept on
+      <a
+        [href]="repoUrl()"
+        [attr.data-print-text]="repoUrl().replace('https://', '')"
+        target="_blank"
+        rel="noopener noreferrer"
+        >GitHub</a
+      >.
     </p>
     <p class="site-footer__legal">© {{ year() }} Jason Parker</p>
     <p class="site-footer__top screen-only"><a [routerLink]="[]" fragment="top">Back to top</a></p>

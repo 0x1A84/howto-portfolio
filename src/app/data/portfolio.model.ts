@@ -9,6 +9,7 @@ export interface Portfolio {
     // src: 원본. 화면에서는 CSS로 색조를 입히고, A4 인쇄에서는 그대로 보여 줌
     // exportSrc: 웹 디자인 PDF(export:pdf)용. 화면의 혼합 모드 색조를 미리 입힌 파일 (PDF에서 mix-blend-mode가 깨지기 때문)
     photo: { src: string; exportSrc: string; alt: string; width: number; height: number };
+    mobileIntro: { title: string; detail: string };
     tagline: string; // 머리말의 한 줄 소개
     summary: string; // 소개 문단
     links: ContactLink[];

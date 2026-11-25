@@ -95,9 +95,3 @@
     flex-shrink: 0;
   }
 }
-
-@media screen and (width < 60rem) {
-  .site-footer__source {
-    display: none;
-  }
-}

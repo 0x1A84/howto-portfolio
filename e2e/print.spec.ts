@@ -14,7 +14,7 @@ test.describe('화면', () => {
   }
 
   for (const path of ['./', './en/']) {
-    test(`${path} 모바일에서 배경 사진과 소개를 표시하고 GitHub 링크를 숨긴다`, async ({ page }) => {
+    test(`${path} 모바일 머리말에서 배경 사진을 표시하고 프로필 GitHub 링크를 숨긴다`, async ({ page }) => {
       await page.setViewportSize({ width: 360, height: 800 });
       await page.goto(path);
 
@@ -22,32 +22,36 @@ test.describe('화면', () => {
       const name = page.locator('.profile__name');
       const printButton = page.locator('.profile__actions button');
       await expect(field).toHaveCSS('background-color', 'oklch(0.44 0.2 266)');
-      await expect(page.locator('.profile__field-image')).toBeVisible();
-      await page.locator('.profile__field-image').evaluate((image: HTMLImageElement) => image.decode());
+      const fieldImage = page.locator('.profile__field-image');
+      await expect(fieldImage).toBeVisible();
+      await fieldImage.evaluate((image: HTMLImageElement) => image.decode());
       await expect(page.locator('.profile__credit')).toBeVisible();
-      for (const link of await page.locator('a[href^="https://github.com/"]').all()) {
-        await expect(link).toBeHidden();
-      }
       await expect(name).toBeVisible();
       await expect(printButton).toBeVisible();
+      await expect(page.locator('header.profile').getByRole('link', { name: 'github.com/0x1a84' })).toHaveCount(0);
+      const intro = page.locator('.profile__mobile-intro');
+      await expect(intro.getByText('Fashionable Engineer')).toBeVisible();
+      await expect(intro.locator('strong')).toHaveCSS('font-size', '24px');
+      await expect(intro.locator('span')).toHaveCSS('font-size', '18px');
+      await expect(intro.locator('span')).toHaveText(
+        path === './' ? '한국어·영어 고객 응대' : 'Korean & English customer service',
+      );
+      await expect(intro).toHaveCSS('background-clip', 'text');
+      const photo = page.locator('.profile__photo');
+      const gradient = await photo.evaluate((element) => getComputedStyle(element, '::after').backgroundImage);
+      await expect(intro).toHaveCSS('background-image', gradient);
+      await page.evaluate(() => document.fonts.ready);
+      const photoBounds = (await photo.boundingBox())!;
+      const introBounds = (await intro.boundingBox())!;
+      expect(introBounds.x).toBeGreaterThanOrEqual(photoBounds.x + photoBounds.width);
+      expect(introBounds.y).toBeGreaterThanOrEqual(photoBounds.y);
+      expect(introBounds.y + introBounds.height).toBeLessThanOrEqual(photoBounds.y + photoBounds.height);
 
       const fieldBounds = (await field.boundingBox())!;
       const nameBounds = (await name.boundingBox())!;
       const buttonBounds = (await printButton.boundingBox())!;
-      await page.evaluate(() => document.fonts.ready);
-      const photoBounds = (await page.locator('.profile__photo').boundingBox())!;
-      const [firstLine, ...lines] = await page.locator('.profile__summary p').evaluate((paragraph) => {
-        const range = document.createRange();
-        range.selectNodeContents(paragraph);
-        return Array.from(range.getClientRects(), ({ left, right, top }) => ({ left, right, top }));
-      });
       expect(nameBounds.y).toBeGreaterThanOrEqual(fieldBounds.y);
       expect(buttonBounds.y + buttonBounds.height).toBeLessThanOrEqual(fieldBounds.y + fieldBounds.height);
-      expect(firstLine.left).toBeGreaterThanOrEqual(photoBounds.x + photoBounds.width);
-      expect(firstLine.top).toBeLessThan(photoBounds.y + photoBounds.height);
-      const lineBelowPhoto = lines.find((line) => line.top >= photoBounds.y + photoBounds.height);
-      expect(lineBelowPhoto?.left).toBeCloseTo(photoBounds.x);
-      expect(Math.max(firstLine.right, ...lines.map((line) => line.right))).toBeLessThanOrEqual(360);
     });
   }
 

@@ -38,6 +38,7 @@ export const PORTFOLIO_EN: Portfolio = {
       width: 206,
       height: 264,
     },
+    mobileIntro: { title: 'Fashionable Engineer', detail: 'Korean & English customer service' },
     tagline: 'I have served customers at Massimo Dutti and Zara, and I use AI tools fluently at work.',
     summary:
       'As a Fashion Advisor at Massimo Dutti Jamsil, I served customers in Korean and English and handled stock receiving, display, packing, and shipping. At Zara, I supported store operations in Gangnam and sales at Hanam Starfield during the Rebajas season. Before that, I built web interfaces with Angular and handled QA at a software company. Now I am combining both experiences to build a feature that compares Massimo Dutti products with runway looks, along with store onboarding and personal work log features. I would like to welcome customers at a Massimo Dutti store again and help run the store.',

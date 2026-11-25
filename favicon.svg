@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <title>0x1a84</title>
+  <!-- Grid 2×2: 잉크 네모 셋과 마크 빨강 원 하나(고른 것). 색은 tokens.css의 --color-ink·--color-mark, OS 다크 모드를 따른다 -->
+  <style>
+    .body { fill: #0F141E; } .mark { fill: #D9241B; }
+    @media (prefers-color-scheme: dark) { .body { fill: #F2F0EC; } .mark { fill: #F05848; } }
+  </style>
+  <path class="body" fill-rule="evenodd" d="M4 4h42v42H4ZM54 4h42v42H54ZM4 54h42v42H4Z"/>
+  <circle class="mark" cx="75" cy="75" r="21"/>
+</svg>

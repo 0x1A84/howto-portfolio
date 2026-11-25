@@ -1,0 +1,97 @@
+/* 꼬리말: 영어로 쓴 판권면입니다. 큰 맺음말 한 줄 아래에 갱신일, 저장소, 저작권을 둡니다. */
+.site-footer {
+  padding-block: var(--space-2xl) var(--space-xl);
+  background: var(--color-paper-2);
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.site-footer__sign {
+  font-family: var(--font-display);
+  font-size: var(--text-display-s);
+  font-weight: var(--display-weight, 700);
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  overflow-wrap: break-word;
+  min-width: 0;
+  padding-bottom: var(--space-lg);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+}
+
+.site-footer__colophon {
+  max-width: 52ch;
+}
+
+.site-footer__colophon a:hover,
+.site-footer__top a:hover {
+  color: var(--color-mark);
+}
+
+.site-footer__legal,
+.site-footer__top {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.site-footer__top a {
+  transition: color var(--dur-short) var(--ease-out);
+}
+
+@media (min-width: 60rem) {
+  .site-footer__inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+    align-items: end;
+  }
+
+  .site-footer__sign {
+    grid-column: 1 / -1;
+    margin-bottom: var(--space-md);
+  }
+
+  .site-footer__colophon {
+    grid-column: 1 / 8;
+  }
+
+  .site-footer__legal {
+    grid-column: 9 / 11;
+  }
+
+  .site-footer__top {
+    grid-column: 11 / -1;
+    justify-self: end;
+  }
+}
+
+@media print {
+  .site-footer {
+    margin-top: 6mm;
+    padding-block: 2mm 0;
+    background: none;
+    border-top: 0.5pt solid var(--color-rule);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 5mm;
+  }
+
+  .site-footer__sign {
+    display: none;
+  }
+
+  .site-footer__colophon {
+    max-width: none;
+  }
+
+  .site-footer__legal {
+    flex-shrink: 0;
+  }
+}

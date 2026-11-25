@@ -1,0 +1,17 @@
+<nav class="site-nav screen-only" aria-label="섹션">
+  <div class="container site-nav__bar">
+    <a class="site-nav__wordmark" href="#top">{{ name() }}</a>
+    <ul class="site-nav__list" role="list">
+      @for (section of sections(); track section.id) {
+        <li>
+          <a
+            class="site-nav__link"
+            [href]="'#' + section.id"
+            [attr.aria-current]="current() === section.id ? 'true' : null"
+            >{{ section.label }}</a
+          >
+        </li>
+      }
+    </ul>
+  </div>
+</nav>

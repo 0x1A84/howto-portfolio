@@ -1,0 +1,24 @@
+<section class="sheet sheet--well" id="skills" aria-labelledby="skills-title">
+  <div class="container sheet__grid">
+    <h2 class="sheet__title" id="skills-title">역량</h2>
+
+    <table class="skills-table sheet__body">
+      <thead>
+        <tr>
+          <th scope="col">분야</th>
+          <th scope="col">내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (skill of skills(); track skill.area) {
+          <tr>
+            <th scope="row">{{ skill.area }}</th>
+            <td>{{ skill.items.join(', ') }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <p class="sheet__note">{{ interestNote() }}</p>
+  </div>
+</section>

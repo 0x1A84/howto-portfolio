@@ -1,0 +1,38 @@
+<article class="project-card" [id]="project().id" [attr.aria-labelledby]="project().id + '-title'">
+  <header class="project-card__head">
+    <h3 class="project-card__title" [id]="project().id + '-title'">
+      @if (project().url; as url) {
+        <a [href]="url" [attr.data-print-text]="url.replace('https://', '')" target="_blank" rel="noopener noreferrer">{{
+          project().title
+        }}</a>
+      } @else {
+        {{ project().title }}
+      }
+    </h3>
+    <p class="project-card__subtitle">{{ project().subtitle }}</p>
+  </header>
+
+  <p class="project-card__description">{{ project().description }}</p>
+
+  @if (project().highlights.length > 0) {
+    <dl class="project-card__highlights">
+      @for (highlight of project().highlights; track highlight.label) {
+        <div class="project-card__highlight">
+          <dt>{{ highlight.label }}</dt>
+          <dd>{{ highlight.text }}</dd>
+        </div>
+      }
+    </dl>
+  }
+
+  @if (project().stack.length > 0) {
+    <div class="project-card__stack">
+      <h4 class="project-card__stack-title">사용 기술</h4>
+      <ul class="tag-list" role="list">
+        @for (tech of project().stack; track tech) {
+          <li class="tag">{{ tech }}</li>
+        }
+      </ul>
+    </div>
+  }
+</article>

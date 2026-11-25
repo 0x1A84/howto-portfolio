@@ -1,0 +1,14 @@
+.period {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  white-space: nowrap;
+}
+
+.period__to::before {
+  content: "";
+  display: block;
+  width: 0.6em;
+  height: var(--rule-hair);
+  background: currentColor;
+}

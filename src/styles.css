@@ -1,0 +1,11 @@
+/* Hallmark · shape: Long Document · genre: editorial · theme: Grid (by request) · job: hire · draw: 9a31d8
+ * hero: the overprint sheet, the name crossing the ultramarine field · nav: slab · footer: colophon block · imagery: none · signature: the name printed across the field, turning field-ink where it crosses
+ * axes: light/grotesk-sans/cool · posture: full-palette · modes: light only · surface: absolute (print only) · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V3 · weakest: V, the overprint hero is the theme's own Range; kept it because the name is the only material and the sections below stay a plain document */
+/* Hallmark · waive 7b · print tokens set --color-paper to #fff in print.css · the A4 sheet and PDF must print white paper with no tint (FR-13) */
+@import url("./styles/tokens.css");
+@import url("./styles/fonts.css");
+@import url("./styles/base.css");
+@import url("./styles/layout.css");
+@import url("./styles/print.css");
+@import url("./styles/export.css");

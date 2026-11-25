@@ -1,0 +1,70 @@
+<header class="profile" id="top">
+  <div class="container profile__grid">
+    <div class="profile__field field" aria-hidden="true">
+      <img class="profile__field-image" [src]="profile().heroImage.src" alt="" decoding="async" />
+    </div>
+
+    <h1 class="profile__name">
+      <span class="profile__line">{{ profile().name }}</span>&ngsp;<span class="profile__line">{{
+        profile().handle
+      }}</span>
+      <span class="profile__overprint" aria-hidden="true"
+        ><span class="profile__line">{{ profile().name }}</span
+        >&ngsp;<span class="profile__line">{{ profile().handle }}</span></span
+      >
+    </h1>
+
+    <p class="lead profile__tagline">{{ profile().tagline }}</p>
+
+    <div class="profile__actions screen-only">
+      <div class="profile__buttons">
+        <app-print-button />
+      </div>
+      <p class="profile__hint">인쇄 대화상자에서 ‘머리글과 바닥글’을 끄면 깔끔하게 인쇄됩니다.</p>
+    </div>
+
+    <ul class="profile__links" role="list">
+      @for (link of profile().links; track link.href) {
+        <li>
+          <a class="profile__link" [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.printText }}</a>
+          <span class="profile__link-label">{{ link.label }}</span>
+        </li>
+      }
+    </ul>
+
+    <p class="profile__credit">
+      <a [href]="profile().heroImage.creditHref" target="_blank" rel="noopener noreferrer">{{
+        profile().heroImage.credit
+      }}</a>
+    </p>
+  </div>
+
+  <div class="print-only profile__print-meta">
+    <p>웹 버전 {{ siteUrl() }}</p>
+    <p>
+      <time [attr.datetime]="updatedAt()">{{ updatedAt() | koDate }}</time> 기준
+    </p>
+  </div>
+
+  <div class="container profile__summary">
+    <div class="profile__photo">
+      <img
+        class="profile__photo-image screen-only"
+        [src]="profile().photo.src"
+        [alt]="profile().photo.alt"
+        [width]="profile().photo.width"
+        [height]="profile().photo.height"
+        decoding="async"
+      />
+      <img
+        class="profile__photo-image print-only"
+        [src]="profile().photo.printSrc"
+        [alt]="profile().photo.alt"
+        [width]="profile().photo.width"
+        [height]="profile().photo.height"
+        decoding="async"
+      />
+    </div>
+    <p>{{ profile().summary }}</p>
+  </div>
+</header>

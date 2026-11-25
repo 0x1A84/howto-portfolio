@@ -1,0 +1,10 @@
+@if (resume(); as resume) {
+  <section class="sheet" id="resume" aria-labelledby="resume-title">
+    <div class="container sheet__grid">
+      <h2 class="sheet__title" id="resume-title">이력서</h2>
+      <p class="sheet__body">
+        <a [href]="resume.href" target="_blank" rel="noopener noreferrer">{{ resume.label }}</a>
+      </p>
+    </div>
+  </section>
+}

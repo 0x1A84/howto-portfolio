@@ -1,0 +1,25 @@
+<section class="sheet sheet--well" id="education" aria-labelledby="education-title">
+  <div class="container sheet__grid">
+    <h2 class="sheet__title" id="education-title">학력</h2>
+
+    <ul class="education-list sheet__body" role="list">
+      @for (item of education(); track item.school) {
+        <li class="education-item">
+          <h3 class="education-item__school">{{ item.school }}</h3>
+          <p class="education-item__major">{{ item.major }}</p>
+          <p class="education-item__period">
+            <app-period [value]="item.period" />
+            @if (item.status) {
+              <span class="education-item__status">{{ item.status }}</span>
+            }
+            @if (item.gpa) {
+              <span class="education-item__gpa">평점 {{ item.gpa }}</span>
+            }
+          </p>
+        </li>
+      }
+    </ul>
+
+    <p class="sheet__note">{{ note() }}</p>
+  </div>
+</section>

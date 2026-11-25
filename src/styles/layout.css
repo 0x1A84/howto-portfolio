@@ -1,0 +1,111 @@
+/* 섹션 공통 틀: 제목은 1열에서 걸고, 본문은 5열부터 시작합니다. 섹션 사이는 선 대신 여백과 종이 색으로 나눕니다. */
+.sheet {
+  padding-block: var(--section-gap-s);
+}
+
+.sheet--well {
+  background: var(--color-paper-2);
+}
+
+.sheet__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--space-xl);
+}
+
+.sheet__note {
+  max-width: 60ch;
+  color: var(--color-ink-2);
+  word-break: keep-all;
+}
+
+@media (min-width: 60rem) {
+  .sheet__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap-columns);
+  }
+
+  .sheet__title {
+    grid-column: 1 / 5;
+  }
+
+  .sheet__body,
+  .sheet__note {
+    grid-column: 5 / -1;
+  }
+
+  .sheet__note {
+    margin-top: calc(-1 * var(--space-md));
+  }
+}
+
+body {
+  word-break: keep-all;
+}
+
+/* 버튼: 주 버튼은 잉크 색 사각형, 보조 버튼은 밑줄 글자입니다. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding-inline: var(--space-lg);
+  border: 0;
+  border-radius: var(--radius-card);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+
+.btn--primary {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.btn--primary:hover {
+  background: var(--color-ink-2);
+}
+
+.btn--primary:active {
+  background: var(--color-muted);
+}
+
+.btn--secondary {
+  padding-inline: 0;
+  background: none;
+  color: currentColor;
+  text-decoration: underline var(--rule-hair);
+  text-underline-offset: 0.32em;
+}
+
+.btn--secondary:hover {
+  color: var(--color-mark);
+}
+
+.btn--secondary:active {
+  color: var(--color-ink-2);
+}
+
+.btn:disabled {
+  background: var(--color-paper-3);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: var(--z-toast);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+.print-only {
+  display: none;
+}

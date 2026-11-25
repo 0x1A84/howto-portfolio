@@ -1,0 +1,137 @@
+/* 인쇄 모드: 'A4로 인쇄'와 브라우저의 인쇄 대화상자가 이 규칙을 씁니다.
+   빌드 때 만드는 PDF는 화면 디자인을 그대로 쓰므로 export.css를 봅니다. */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 14mm 16mm;
+
+    @bottom-center {
+      content: counter(page) ' / ' counter(pages);
+      font-family: var(--font-body);
+      font-size: 8pt;
+      color: var(--color-muted);
+    }
+  }
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  :root {
+    /* 인쇄용 흰 바탕과 검은 글자로 덮어씁니다. */
+    color-scheme: light;
+    --color-paper: #fff;
+    --color-paper-2: #fff;
+    --color-paper-3: #fff;
+    --color-ink: #111;
+    --color-ink-2: #333;
+    --color-muted: #555;
+    --color-rule: #ccc;
+    --color-field: #fff;
+    --color-field-ink: #111;
+    --color-mark: oklch(50% 0.2 29);
+    --color-accent: oklch(44% 0.2 266);
+    --color-slab: #fff;
+    --color-slab-ink: #111;
+    --color-tag-edge: #999;
+    --color-photo-tint-from: oklch(44% 0.2 266);
+
+    --text-md: 10pt;
+    --text-sm: 8.5pt;
+    --text-lg: 11pt;
+    --text-lead: 11pt;
+    --text-title: 12pt;
+    --text-xl: 11pt;
+    --text-2xl: 14pt;
+    --text-3xl: 14pt;
+    --text-section: 16pt;
+    --text-display-s: 16pt;
+    --text-display: 24pt;
+    --section-gap-s: 8mm;
+    --section-gap: 8mm;
+    --section-gap-l: 8mm;
+    --gutter: 0;
+    --gap-columns: 5mm;
+  }
+
+  html,
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  .screen-only {
+    display: none;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .container {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* 외부 링크 뒤에 주소를 글자로 찍습니다. 내부 앵커(#...)는 찍지 않습니다. */
+  a[data-print-text]::after {
+    content: ' (' attr(data-print-text) ')';
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  dt {
+    break-after: avoid;
+  }
+
+  h2 {
+    max-width: none;
+    letter-spacing: -0.01em;
+  }
+
+  .project-card,
+  .project-card__highlight,
+  .experience-item,
+  .education-item,
+  .skills-table tr {
+    break-inside: avoid;
+  }
+
+  /* 섹션: 종이 색을 바꾸지 않고, 제목 아래 본문이 바로 이어지는 1단 구성입니다. */
+  .sheet,
+  .sheet--well {
+    padding-block: var(--section-gap-s) 0;
+    background: none;
+  }
+
+  .sheet__grid {
+    display: block;
+  }
+
+  .sheet__title {
+    margin-bottom: 3mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.5pt solid var(--color-ink);
+  }
+
+  .sheet__note {
+    max-width: none;
+    margin-top: 2.5mm;
+    color: var(--color-ink-2);
+  }
+}

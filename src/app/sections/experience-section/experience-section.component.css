@@ -1,0 +1,143 @@
+/* 경력: ITX 코리아(Massimo Dutti, Zara), 서비스와 물류, 웹 개발 순으로 묶습니다. 근무처마다 한 줄. 왼쪽에 근무처와 직무, 오른쪽에 맡은 일을 둡니다. */
+.experience-groups {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.experience-group__title {
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--color-muted);
+}
+
+/* 지원 직무와 가장 가까운 첫 묶음은 제목과 위 선을 강조색으로 표시합니다. */
+.experience-group--lead .experience-group__title {
+  color: var(--color-accent);
+}
+
+.experience-group--lead .experience-item:first-child {
+  border-top: 3px solid var(--color-accent);
+}
+
+.experience-group__note {
+  max-width: 60ch;
+  margin-top: var(--space-md);
+  color: var(--color-ink-2);
+}
+
+.experience-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xs);
+  padding-block: var(--space-lg);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.experience-item:last-child {
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+}
+
+.experience-item__org {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: var(--display-weight, 700);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.experience-item__role {
+  margin-top: var(--space-2xs);
+  font-weight: 500;
+}
+
+.experience-item__period {
+  margin-top: var(--space-2xs);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.experience-item__duties {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.experience-item__duties li + li {
+  margin-top: var(--space-2xs);
+}
+
+@media (min-width: 40rem) {
+  .experience-item {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--gap-columns);
+  }
+}
+
+/* 인쇄: 근무처와 업무를 2열 표 형태로 */
+
+@media print {
+  .experience-groups {
+    gap: 3mm;
+  }
+
+  .experience-group__title {
+    margin-bottom: 1mm;
+    break-after: avoid;
+  }
+
+  .experience-group--lead .experience-item:first-child {
+    border-top-width: 1.5pt;
+  }
+
+  .experience-group__note {
+    max-width: none;
+    margin-top: 1.5mm;
+  }
+
+  /* 경력: 왼쪽 열에 근무처·직무·기간, 오른쪽 열에 맡은 일을 두는 2열 표 형태입니다. */
+  .experience-item {
+    display: grid;
+    grid-template-columns: 62mm minmax(0, 1fr);
+    column-gap: 5mm;
+    padding-block: 2mm;
+  }
+
+  .experience-item__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 3mm;
+    align-content: start;
+  }
+
+  .experience-item__org {
+    grid-column: 1 / -1;
+  }
+
+  .experience-item__role,
+  .experience-item__period {
+    margin-top: 0.5mm;
+  }
+
+  .experience-item__duties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5mm 4mm;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .experience-item__duties li + li {
+    margin-top: 0;
+  }
+}

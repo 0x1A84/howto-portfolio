@@ -1,0 +1,42 @@
+/* 화면과 인쇄본, PDF의 글자 모양을 맞추기 위해 글꼴을 직접 제공합니다 (NFR-05). */
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../public/fonts/pretendard-regular.subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../public/fonts/pretendard-medium.subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../public/fonts/pretendard-bold.subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Radio Canada Big";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../public/fonts/radio-canada-big-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: "Radio Canada Big";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../public/fonts/radio-canada-big-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215;
+}

@@ -1,0 +1,47 @@
+<section class="sheet" id="experience" aria-labelledby="experience-title">
+  <div class="container sheet__grid">
+    <h2 class="sheet__title" id="experience-title">경력</h2>
+
+    <div class="experience-groups sheet__body">
+      @for (group of groups(); track group.id; let first = $first) {
+        <div
+          class="experience-group"
+          [class.experience-group--lead]="first"
+          role="group"
+          [attr.aria-labelledby]="group.id"
+        >
+          <h3 class="experience-group__title" [id]="group.id">
+            {{ group.title }}
+          </h3>
+
+          <ol class="experience-list" role="list">
+            @for (item of group.items; track item.organization) {
+              <li class="experience-item">
+                <div class="experience-item__head">
+                  <h4 class="experience-item__org">{{ item.organization }}</h4>
+                  @if (item.role) {
+                    <p class="experience-item__role">{{ item.role }}</p>
+                  }
+                  <p class="experience-item__period">
+                    <app-period [value]="item.period" />
+                  </p>
+                </div>
+                @if (item.duties.length > 0) {
+                  <ul class="experience-item__duties">
+                    @for (duty of item.duties; track duty) {
+                      <li>{{ duty }}</li>
+                    }
+                  </ul>
+                }
+              </li>
+            }
+          </ol>
+
+          @if (group.note) {
+            <p class="experience-group__note">{{ group.note }}</p>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

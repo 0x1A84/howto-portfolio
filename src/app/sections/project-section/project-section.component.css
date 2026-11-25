@@ -1,0 +1,13 @@
+.project-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2xl);
+}
+
+/* 인쇄: 필드 배경을 지우고 1단으로 */
+
+@media print {
+  .project-list {
+    gap: 6mm;
+  }
+}

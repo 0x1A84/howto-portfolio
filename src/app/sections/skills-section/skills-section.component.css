@@ -1,0 +1,52 @@
+/* 역량: 분야와 내용 두 열의 표. 행 사이에만 머리카락 선을 둡니다. */
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.skills-table thead th {
+  padding-bottom: var(--space-xs);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-muted);
+  text-align: start;
+}
+
+.skills-table tbody tr {
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.skills-table tbody th,
+.skills-table td {
+  padding-block: var(--space-md);
+  vertical-align: top;
+  text-align: start;
+}
+
+.skills-table tbody th {
+  width: 7em;
+  padding-right: var(--space-md);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+@media print {
+  .skills-table thead {
+    display: none;
+  }
+
+  .skills-table tbody tr:first-child {
+    border-top: 0;
+  }
+
+  .skills-table tbody th,
+  .skills-table td {
+    padding-block: 1.2mm;
+  }
+
+  .skills-table tbody th {
+    width: 28mm;
+    font-size: var(--text-md);
+  }
+}

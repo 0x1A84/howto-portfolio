@@ -1,0 +1,78 @@
+/* PDF 내보내기: scripts/export-pdf.mjs가 <html data-export="pdf">를 붙인 뒤 화면 디자인을 그대로 A4에 옮깁니다.
+   색, 글꼴, 배치는 화면과 같고, 섹션 여백만 줄여 두 쪽에 맞춥니다. PDF에서 깨지는 혼합 모드는 미리 만든 이미지로 바꿉니다. */
+/* 종이: 이름 붙은 페이지라서 data-export가 붙은 문서에만 적용됩니다. 여백 없이 필드와 배경을 종이 끝까지 칠합니다. */
+@page portfolio-export {
+  size: A4 portrait;
+  margin: 0;
+}
+
+html[data-export="pdf"] body {
+  page: portfolio-export;
+}
+
+html[data-export="pdf"] {
+  --section-gap-s: 40px;
+  background: var(--color-paper);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+html[data-export="pdf"] .screen-only {
+  display: none;
+}
+
+html[data-export="pdf"] .profile__photo-image.print-only {
+  display: block;
+  filter: none;
+}
+
+html[data-export="pdf"] .profile__photo::after {
+  content: none;
+}
+
+html[data-export="pdf"] .profile__grid {
+  grid-template-rows: var(--space-xl) auto auto auto var(--space-lg);
+}
+
+html[data-export="pdf"] .profile__summary {
+  padding-top: var(--space-lg);
+}
+
+html[data-export="pdf"] .experience-groups {
+  gap: var(--space-lg);
+}
+
+html[data-export="pdf"] .experience-item {
+  padding-block: var(--space-xs);
+}
+
+html[data-export="pdf"] .project-card__highlights {
+  margin-top: var(--space-md);
+  gap: var(--space-md);
+}
+
+html[data-export="pdf"] .project-card__stack {
+  margin-top: var(--space-md);
+}
+
+html[data-export="pdf"] .site-footer {
+  padding-block: var(--space-lg);
+}
+
+/* 쪽 나눔: 1쪽은 머리말, 소개, 경력이고 2쪽은 역량부터 끝까지입니다. */
+html[data-export="pdf"] #skills {
+  break-before: page;
+}
+
+html[data-export="pdf"] .experience-item,
+html[data-export="pdf"] .project-card__highlight,
+html[data-export="pdf"] .project-card__stack,
+html[data-export="pdf"] .skills-table,
+html[data-export="pdf"] .education-item {
+  break-inside: avoid;
+}
+
+html[data-export="pdf"] h3,
+html[data-export="pdf"] h4 {
+  break-after: avoid;
+}

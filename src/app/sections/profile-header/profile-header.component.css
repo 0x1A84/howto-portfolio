@@ -361,7 +361,7 @@
   }
 
   .profile__summary {
-    grid-template-columns: minmax(0, 1fr) 22mm;
+    grid-template-columns: minmax(0, 1fr) auto;
     column-gap: 5mm;
     align-items: start;
     padding-top: 3mm;
@@ -370,9 +370,12 @@
   .profile__photo {
     grid-column: 2;
     grid-row: 1;
-    align-self: start;
-    width: 22mm;
-    margin: calc(0.3 * var(--text-md)) 0 0;
+    width: 24mm;
+    margin: 0;
+    padding: 1mm;
+    border-width: 0.5pt;
+    background: var(--color-paper);
+    break-inside: avoid;
   }
 
   /* A4 인쇄: 색조 없이 원본 사진을 그대로 보여 줍니다. */
@@ -380,7 +383,8 @@
     content: none;
   }
 
-  .profile__photo-image {
+  .profile__photo-image--live {
+    display: block;
     filter: none;
   }
 

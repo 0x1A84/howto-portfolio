@@ -27,6 +27,8 @@ async function main() {
     const page = await browser.newPage({ viewport: { width: LAYOUT_WIDTH, height: 900 } });
     await page.emulateMedia({ media: 'screen', colorScheme: 'light' });
     await page.goto(url, { waitUntil: 'networkidle' });
+    // 스타일시트가 늦게 적용되면 서식 없는 PDF가 나오므로, 섹션 틀 규칙이 적용될 때까지 기다립니다.
+    await page.waitForFunction(() => getComputedStyle(document.querySelector('.sheet__grid')).display === 'grid');
     await page.evaluate(() => {
       document.documentElement.dataset.export = 'pdf';
       return document.fonts.ready;

@@ -124,7 +124,7 @@ export const PORTFOLIO: Portfolio = {
     },
   ],
   interestNote:
-    'Claude 같은 AI 도구를 업무에 익숙하게 활용합니다. 매장에서 되풀이하는 일을 체크리스트로 정리하고, 필요한 자료와 기능도 AI 도구로 빠르게 만들어 봅니다.',
+    'Claude 같은 AI 도구를 업무에 익숙하게 활용합니다. 매장에서 되풀이하는 일을 체크리스트로 정리하고, 필요한 자료와 기능도 AI 도구로 빠르게 만들 수 있습니다.',
   projects: [
     {
       id: 'howto-dig-fashion',

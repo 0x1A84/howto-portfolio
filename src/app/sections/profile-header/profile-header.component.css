@@ -97,20 +97,23 @@
   color: var(--color-muted);
 }
 
-/* 필드 배경: 흑백으로 저장한 Zara 매장 내부 사진 위에 울트라마린 그라데이션을 반투명하게 덮습니다.
+/* 필드 배경: Massimo Dutti 여의도 IFC몰점 사진을 흑백으로 보이게 하고, 그 위에 울트라마린 그라데이션을 반투명하게 덮습니다.
+   한국관광공사 사진이라 파일은 원본 그대로 두고 흑백은 CSS 필터로 처리합니다.
    혼합 모드 없이 투명도만 쓰므로 PDF로 옮겨도 같은 색으로 나옵니다. */
 .profile__field {
   position: relative;
   overflow: hidden;
 }
 
+/* 필드는 오른쪽으로 화면 밖까지 넘치므로, 사진은 화면 오른쪽 끝에서 끝나게 잘라 간판이 보이게 합니다. */
 .profile__field-image {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  inset: 0 auto 0 0;
+  width: calc(100% - var(--bleed) + var(--gutter) + max(0px, (100vw - var(--container)) / 2));
   height: 100%;
   object-fit: cover;
-  object-position: 30% 55%;
+  object-position: 60% 50%;
+  filter: grayscale(1);
 }
 
 .profile__field::after {

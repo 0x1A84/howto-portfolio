@@ -17,6 +17,16 @@ html[data-export="pdf"] {
   -webkit-print-color-adjust: exact;
 }
 
+/* 머리말 필드: PDF에서는 vw가 화면과 다르게 계산되므로, 필드를 종이 오른쪽 끝까지만 늘리고 사진이 필드를 꽉 채우게 합니다. */
+html[data-export="pdf"] .profile__grid {
+  --bleed: var(--gutter);
+}
+
+html[data-export="pdf"] .profile__field-image {
+  inset: 0;
+  width: 100%;
+}
+
 html[data-export="pdf"] .screen-only {
   display: none;
 }

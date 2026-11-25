@@ -24,10 +24,9 @@ export const PORTFOLIO: Portfolio = {
       },
     ],
     heroImage: {
-      src: 'images/zara-store-interior.jpg',
-      credit: '배경 사진 Nick-D, CC BY-SA 4.0',
-      creditHref:
-        'https://commons.wikimedia.org/wiki/File:Interior_of_the_Zara_store_in_the_Canberra_Centre_February_2025.jpg',
+      src: 'images/massimo-dutti-ifc-mall.jpg',
+      credit: '배경 사진 한국관광공사',
+      creditHref: 'https://www.ktriptips.com/eng/shopping/2957752',
     },
   },
   experienceGroups: [

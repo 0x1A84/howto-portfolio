@@ -143,7 +143,7 @@ PDF는 사용자의 브라우저에서 만들지 않고, 빌드할 때 Playwrigh
 | FR-33 | 필수 | PDF의 글자는 이미지가 아니라 텍스트다. | `pdftotext`로 뽑은 결과에 이름과 모든 섹션 제목이 들어 있다. 사용한 글꼴이 PDF에 포함되어 있다 (`pdffonts`로 확인). |
 | FR-34 | 필수 | PDF 안의 외부 링크를 누를 수 있다. | 이메일, 저장소, 웹 주소 링크가 PDF 뷰어에서 열린다. 링크 주소도 글자로 함께 찍힌다 (FR-15). |
 | FR-35 | 권장 | PDF 문서 정보를 채운다. | 제목은 페이지 `title`, 언어는 `ko`로 들어간다. `page.pdf({ tagged: true, outline: true })`로 태그와 책갈피(섹션 제목)를 넣는다. |
-| FR-36 | 권장 | 파일 이름과 용량을 관리한다. | 내려받는 파일 이름은 `lee-jaehoon-portfolio.pdf` (`download` 속성 값). 용량은 1MB 이하. 글꼴은 서브셋만 포함한다. |
+| FR-36 | 권장 | 파일 이름과 용량을 관리한다. | 내려받는 파일 이름은 `jason-parker-portfolio.pdf` (`download` 속성 값). 용량은 1MB 이하. 글꼴은 서브셋만 포함한다. |
 | FR-37 | 권장 | 내용이 바뀌면 PDF도 다시 만든다. | PDF는 저장소에 커밋하지 않고 빌드 산출물로만 둔다. 그래서 배포할 때마다 최신 내용으로 다시 생성된다. |
 | FR-38 | 선택 | PDF 버튼 옆에 쪽수와 용량을 표시한다. | 빌드 스크립트가 쪽수와 용량을 `files/portfolio.json`에 기록하고, 템플릿이 빌드 시 읽어 "A4 2쪽, 180KB"처럼 표시한다. |
 
@@ -345,7 +345,7 @@ CLAUDE.md의 확인 절차에 인쇄 항목을 더해 다음을 확인합니다.
 | PDF 용지·쪽수 | 생성된 PDF의 쪽 크기와 쪽수 확인 (`pdfinfo` 또는 `pdf-lib`) | 595×842pt(A4), 2쪽 이하 |
 | PDF 텍스트·글꼴 | `pdftotext`, `pdffonts` | 이름과 섹션 제목이 추출되고, 글꼴이 모두 포함됨 (FR-33) |
 | PDF 링크 | PDF 주석의 URI 목록 확인 | 데이터의 외부 링크와 일치 (FR-34) |
-| PDF 내려받기 | Playwright `page.waitForEvent('download')` 후 버튼 클릭 | 파일 이름이 `lee-jaehoon-portfolio.pdf`이고 내용이 비어 있지 않음 (FR-30, FR-36) |
+| PDF 내려받기 | Playwright `page.waitForEvent('download')` 후 버튼 클릭 | 파일 이름이 `jason-parker-portfolio.pdf`이고 내용이 비어 있지 않음 (FR-30, FR-36) |
 
 ## 9. 작업 순서와 커밋 단위
 
@@ -372,5 +372,5 @@ CLAUDE.md 규칙에 따라 `feat/<기능명>` 브랜치에서 기능 단위로 �
 | 3 | `references/gpt.resume.md`의 내용(핵심 역량, 추가 프로젝트, 패션에 대한 관점)을 페이지에 넣을지 | 1차는 `PORTFOLIO.md` 범위만. 추가하려면 먼저 `PORTFOLIO.md`에 반영 |
 | 4 | 배포처와 도메인 | GitHub Pages (`<사용자>.github.io/howto-portfolio`). 이 경우 `baseHref` 설정 필요 |
 | 5 | 수동 테마 토글, 영문 버전 | 2차로 미룸 |
-| 6 | PDF 파일 이름에 실명을 넣을지 | `lee-jaehoon-portfolio.pdf`. 실명을 빼려면 `0x1a84-portfolio.pdf` |
+| 6 | PDF 파일 이름에 실명을 넣을지 | `jason-parker-portfolio.pdf`. 실명을 빼려면 `0x1a84-portfolio.pdf` |
 | 7 | 포트폴리오 PDF와 이력서 PDF를 따로 둘지 | 따로 둠. 포트폴리오 PDF는 페이지에서 자동 생성, 이력서 PDF는 직접 만든 원본 |

@@ -5,9 +5,9 @@ import { Portfolio } from './portfolio.model';
 export const PORTFOLIO_EN: Portfolio = {
   lang: 'en',
   ui: {
-    pageTitle: 'Lee Jaehoon Portfolio',
+    pageTitle: 'Jason Parker Portfolio',
     description:
-      'Experience, skills, projects, and education of Lee Jaehoon, a former Massimo Dutti Fashion Advisor with Angular frontend development experience.',
+      'Experience, skills, projects, and education of Jason Parker, a former Massimo Dutti Fashion Advisor with Angular frontend development experience.',
     ogLocale: 'en_US',
     skipLink: 'Skip to content',
     navLabel: 'Sections',
@@ -29,12 +29,12 @@ export const PORTFOLIO_EN: Portfolio = {
     stackTitle: 'Tech stack',
   },
   profile: {
-    name: 'Lee Jaehoon',
+    name: 'Jason Parker',
     handle: '0x1a84',
     photo: {
       src: 'images/profile-photo.jpg',
       exportSrc: 'images/profile-photo-print.jpg',
-      alt: 'Profile photo of Lee Jaehoon',
+      alt: 'Profile photo of Jason Parker',
       width: 206,
       height: 264,
     },

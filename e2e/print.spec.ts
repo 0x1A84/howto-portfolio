@@ -13,6 +13,30 @@ test.describe('화면', () => {
     });
   }
 
+  for (const path of ['./', './en/']) {
+    test(`${path} 모바일 머리말은 사진 없이 파란 배경에 이름과 인쇄 버튼을 배치한다`, async ({ page }) => {
+      await page.setViewportSize({ width: 360, height: 800 });
+      await page.goto(path);
+
+      const field = page.locator('.profile__field');
+      const name = page.locator('.profile__name');
+      const printButton = page.locator('.profile__actions button');
+      await expect(field).toHaveCSS('background-color', 'oklch(0.44 0.2 266)');
+      await expect(page.locator('.profile__field-image')).toBeHidden();
+      await expect(page.locator('.profile__credit')).toBeHidden();
+      await expect(name).toBeVisible();
+      await expect(printButton).toBeVisible();
+
+      const fieldBounds = (await field.boundingBox())!;
+      const nameBounds = (await name.boundingBox())!;
+      const buttonBounds = (await printButton.boundingBox())!;
+      const linksBounds = (await page.locator('.profile__links').boundingBox())!;
+      expect(nameBounds.y).toBeGreaterThanOrEqual(fieldBounds.y);
+      expect(buttonBounds.y + buttonBounds.height).toBeLessThanOrEqual(fieldBounds.y + fieldBounds.height);
+      expect(linksBounds.y).toBeGreaterThanOrEqual(fieldBounds.y + fieldBounds.height);
+    });
+  }
+
   test('콘솔 오류가 없다', async ({ page }) => {
     const errors: string[] = [];
     page.on('console', (message) => message.type() === 'error' && errors.push(message.text()));

@@ -1,5 +1,5 @@
 /* 머리말: 이름이 울트라마린 필드를 가로지르며 겹쳐 찍힌 글자처럼 색이 바뀝니다.
-   좁은 화면에서는 필드를 화면 너비 가득한 사진 띠로 맨 위에 두고, 이름은 그 아래 종이 위에 둡니다. */
+   좁은 화면에서는 파란 필드에 이름, 소개 한 줄, 인쇄 버튼을 배치합니다. */
 .profile {
   overflow: clip;
   /* 필드 사진 너비를 스크롤바를 뺀 실제 화면 너비(cqw)로 계산하기 위한 컨테이너입니다. */
@@ -201,6 +201,66 @@
   font-size: var(--text-lg);
   line-height: 1.65;
   word-break: keep-all;
+}
+
+@media screen and (width < 60rem) {
+  .profile__grid {
+    grid-template-rows: repeat(4, auto);
+  }
+
+  .profile__field {
+    grid-row: 1 / 4;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+
+  .profile__field-image,
+  .profile__credit {
+    display: none;
+  }
+
+  .profile__field::after {
+    content: none;
+  }
+
+  .profile__name,
+  .profile__tagline,
+  .profile__actions {
+    position: relative;
+    color: var(--color-field-ink);
+  }
+
+  .profile__name {
+    grid-row: 1;
+    font-size: clamp(var(--text-3xl), 12cqw, 6rem);
+    text-wrap: wrap;
+  }
+
+  .profile__tagline {
+    grid-row: 2;
+    margin-top: var(--space-lg);
+  }
+
+  .profile__actions {
+    grid-row: 3;
+    padding-bottom: var(--space-xl);
+  }
+
+  .profile__actions app-print-button {
+    --color-ink: var(--color-field-ink);
+    --color-ink-2: var(--color-paper-2);
+    --color-muted: var(--color-paper-3);
+    --color-paper: var(--color-field);
+    --color-focus: var(--color-field-ink);
+  }
+
+  .profile__hint {
+    color: inherit;
+  }
+
+  .profile__links {
+    grid-row: 4;
+  }
 }
 
 @media (min-width: 60rem) {

@@ -31,7 +31,11 @@ html[data-export="pdf"] .screen-only {
   display: none;
 }
 
-html[data-export="pdf"] .profile__photo-image.print-only {
+html[data-export="pdf"] .profile__photo-image--live {
+  display: none;
+}
+
+html[data-export="pdf"] .profile__photo-image--baked {
   display: block;
   filter: none;
 }

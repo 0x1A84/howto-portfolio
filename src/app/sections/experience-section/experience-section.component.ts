@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { PeriodComponent } from '../../shared/period/period.component';
-import { ExperienceGroup } from '../../data/portfolio.model';
+import { ExperienceGroup, UiLabels } from '../../data/portfolio.model';
 
 @Component({
   selector: 'app-experience-section',
@@ -11,4 +11,5 @@ import { ExperienceGroup } from '../../data/portfolio.model';
 })
 export class ExperienceSectionComponent {
   readonly groups = input.required<ExperienceGroup[]>();
+  readonly ui = input.required<UiLabels>();
 }

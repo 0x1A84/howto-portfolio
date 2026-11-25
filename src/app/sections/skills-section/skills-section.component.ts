@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { Skill } from '../../data/portfolio.model';
+import { Skill, UiLabels } from '../../data/portfolio.model';
 
 @Component({
   selector: 'app-skills-section',
@@ -10,4 +10,5 @@ import { Skill } from '../../data/portfolio.model';
 export class SkillsSectionComponent {
   readonly skills = input.required<Skill[]>();
   readonly interestNote = input.required<string>();
+  readonly ui = input.required<UiLabels>();
 }

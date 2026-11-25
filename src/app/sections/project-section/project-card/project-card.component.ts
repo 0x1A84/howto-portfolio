@@ -9,4 +9,5 @@ import { Project } from '../../../data/portfolio.model';
 })
 export class ProjectCardComponent {
   readonly project = input.required<Project>();
+  readonly stackTitle = input.required<string>();
 }

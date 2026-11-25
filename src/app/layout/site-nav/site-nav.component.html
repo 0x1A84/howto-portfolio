@@ -1,17 +1,26 @@
-<nav class="site-nav screen-only" aria-label="섹션">
+<nav class="site-nav screen-only" [attr.aria-label]="ui().navLabel">
   <div class="container site-nav__bar">
-    <a class="site-nav__wordmark" href="#top">{{ name() }}</a>
+    <a class="site-nav__wordmark" [routerLink]="[]" fragment="top" lang="en">{{ title() }}</a>
     <ul class="site-nav__list" role="list">
       @for (section of sections(); track section.id) {
         <li>
           <a
             class="site-nav__link"
-            [href]="'#' + section.id"
+            [routerLink]="[]"
+            [fragment]="section.id"
             [attr.aria-current]="current() === section.id ? 'true' : null"
             >{{ section.label }}</a
           >
         </li>
       }
     </ul>
+    <a
+      class="site-nav__lang"
+      [routerLink]="ui().langSwitch.path"
+      [attr.lang]="ui().langSwitch.lang"
+      [attr.hreflang]="ui().langSwitch.lang"
+      [attr.aria-label]="ui().langSwitch.ariaLabel"
+      >{{ ui().langSwitch.label }}</a
+    >
   </div>
 </nav>

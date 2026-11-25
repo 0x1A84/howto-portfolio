@@ -1,11 +1,1 @@
-<a class="skip-link screen-only" href="#main">본문으로 건너뛰기</a>
-<app-site-nav [sections]="sections" [name]="data.profile.name" />
-<app-profile-header [profile]="data.profile" [siteUrl]="data.siteUrl" [updatedAt]="data.updatedAt" />
-<main id="main">
-  <app-experience-section [groups]="data.experienceGroups" />
-  <app-skills-section [skills]="data.skills" [interestNote]="data.interestNote" />
-  <app-project-section [projects]="data.projects" />
-  <app-education-section [education]="data.education" [note]="data.educationNote" />
-  <app-resume-section [resume]="data.resume" />
-</main>
-<app-site-footer [updatedAt]="data.updatedAt" [repoUrl]="data.repoUrl" />
+<router-outlet />

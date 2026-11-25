@@ -1,24 +1,19 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  afterNextRender,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, afterNextRender, inject, input, signal } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { SectionLink } from '../../data/portfolio.model';
+import { RouterLink } from '@angular/router';
+import { SectionLink, UiLabels } from '../../data/portfolio.model';
 
 @Component({
   selector: 'app-site-nav',
+  imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './site-nav.component.html',
   styleUrl: './site-nav.component.css',
 })
 export class SiteNavComponent {
   readonly sections = input.required<SectionLink[]>();
-  readonly name = input.required<string>();
+  readonly title = input.required<string>();
+  readonly ui = input.required<UiLabels>();
 
   protected readonly current = signal<string | null>(null);
 

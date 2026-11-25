@@ -1,13 +1,33 @@
-import { Portfolio, SectionLink } from './portfolio.model';
+import { Portfolio } from './portfolio.model';
 
 // 원본은 PORTFOLIO.md입니다. 내용을 바꾸면 이 파일도 같은 커밋에서 함께 고칩니다.
+// 영어판은 portfolio.data.en.ts(원본 PORTFOLIO.en.md)이며, 사실이 바뀌면 두 언어를 함께 고칩니다.
 export const PORTFOLIO: Portfolio = {
+  lang: 'ko',
+  ui: {
+    pageTitle: '이재훈 포트폴리오',
+    description:
+      'Massimo Dutti Fashion Advisor 경험과 Angular 프런트엔드 개발 경험을 갖춘 이재훈의 경력, 역량, 프로젝트, 학력.',
+    ogLocale: 'ko_KR',
+    skipLink: '본문으로 건너뛰기',
+    navLabel: '섹션',
+    sections: { experience: '경력', skills: '역량', projects: '프로젝트', education: '학력', resume: '이력서' },
+    langSwitch: { path: '/en', label: 'EN', lang: 'en', ariaLabel: 'English version' },
+    printButton: 'A4로 인쇄',
+    printHint: '인쇄 대화상자에서 ‘머리글과 바닥글’을 끄면 깔끔하게 인쇄됩니다.',
+    printWebLabel: '웹 버전',
+    asOf: { before: '', after: ' 기준' },
+    periodTo: '부터',
+    skillsHead: { area: '분야', items: '내용' },
+    gpa: '평점',
+    stackTitle: '사용 기술',
+  },
   profile: {
     name: '이재훈',
     handle: '0x1a84',
     photo: {
       src: 'images/profile-photo.jpg',
-      printSrc: 'images/profile-photo-print.jpg',
+      exportSrc: 'images/profile-photo-print.jpg',
       alt: '이재훈 프로필 사진',
       width: 206,
       height: 264,
@@ -147,13 +167,5 @@ export const PORTFOLIO: Portfolio = {
   siteUrl: 'https://0x1a84.github.io/howto-portfolio/',
   repoUrl: 'https://github.com/0x1a84/howto-portfolio',
   updatedAt: '2026-11-25',
+  navTitle: 'Portfolio',
 };
-
-// 상단 내비게이션 순서. 이력서는 공개가 확정됐을 때만 넣습니다.
-export const SECTIONS: SectionLink[] = [
-  { id: 'experience', label: '경력' },
-  { id: 'skills', label: '역량' },
-  { id: 'projects', label: '프로젝트' },
-  { id: 'education', label: '학력' },
-  ...(PORTFOLIO.resume ? [{ id: 'resume', label: '이력서' }] : []),
-];

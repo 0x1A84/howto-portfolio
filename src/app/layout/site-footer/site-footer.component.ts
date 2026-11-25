@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { EnDatePipe } from '../../shared/en-date.pipe';
 
 @Component({
   selector: 'app-site-footer',
-  imports: [EnDatePipe],
+  imports: [RouterLink, EnDatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './site-footer.component.html',
   styleUrl: './site-footer.component.css',

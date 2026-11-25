@@ -8,7 +8,9 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   template: `<span class="period num">
     {{ parts().start }}
     @if (parts().end) {
-      <span class="period__to"><span class="visually-hidden">부터</span></span>
+      <span class="period__to"
+        ><span class="visually-hidden">{{ to() }}</span></span
+      >
       {{ parts().end }}
     }
   </span>`,
@@ -16,6 +18,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 })
 export class PeriodComponent {
   readonly value = input.required<string>();
+  readonly to = input('부터'); // 보조 기술이 읽는 시작과 끝 사이 말 (영어판은 'to')
 
   protected readonly parts = computed(() => {
     const [start, end] = this.value().split('–');

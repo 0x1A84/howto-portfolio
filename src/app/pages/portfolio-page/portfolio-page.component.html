@@ -1,0 +1,17 @@
+<a class="skip-link screen-only" [routerLink]="[]" fragment="main">{{ data.ui.skipLink }}</a>
+<app-site-nav [sections]="sections" [title]="data.navTitle" [ui]="data.ui" />
+<app-profile-header
+  [profile]="data.profile"
+  [siteUrl]="data.siteUrl"
+  [updatedAt]="data.updatedAt"
+  [ui]="data.ui"
+  [lang]="data.lang"
+/>
+<main id="main">
+  <app-experience-section [groups]="data.experienceGroups" [ui]="data.ui" />
+  <app-skills-section [skills]="data.skills" [interestNote]="data.interestNote" [ui]="data.ui" />
+  <app-project-section [projects]="data.projects" [ui]="data.ui" />
+  <app-education-section [education]="data.education" [note]="data.educationNote" [ui]="data.ui" />
+  <app-resume-section [resume]="data.resume" [ui]="data.ui" />
+</main>
+<app-site-footer [updatedAt]="data.updatedAt" [repoUrl]="data.repoUrl" />

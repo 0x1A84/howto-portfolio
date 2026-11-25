@@ -36,7 +36,7 @@
 .site-nav__list {
   display: flex;
   gap: var(--space-md);
-  margin: 0;
+  margin: 0 0 0 auto;
   padding: 0;
   list-style: none;
   overflow-x: auto;
@@ -55,6 +55,24 @@
 
 .site-nav__link:hover {
   text-decoration: underline;
+}
+
+/* 한/영 전환: 섹션 링크와 구분되도록 얇은 테두리 안에 다른 언어의 약자만 둡니다. */
+.site-nav__lang {
+  flex-shrink: 0;
+  padding: var(--space-3xs) var(--space-xs);
+  border: var(--rule-hair) solid currentColor;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out);
+}
+
+.site-nav__lang:hover {
+  color: var(--color-slab-mark);
 }
 
 .site-nav__link[aria-current="true"] {

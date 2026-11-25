@@ -56,6 +56,12 @@ export function startServer({ root = DIST_DIR, port = 0 } = {}) {
     }
     try {
       const info = await stat(file);
+      // GitHub Pages처럼 폴더 주소(/en)는 끝에 /를 붙인 주소(/en/)로 보냅니다.
+      if (info.isDirectory()) {
+        res.writeHead(301, { location: url.pathname + '/' + url.search });
+        res.end();
+        return;
+      }
       if (!info.isFile()) throw new Error('not a file');
       res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });
       res.end(await readFile(file));

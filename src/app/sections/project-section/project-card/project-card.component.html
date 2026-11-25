@@ -2,9 +2,13 @@
   <header class="project-card__head">
     <h3 class="project-card__title" [id]="project().id + '-title'">
       @if (project().url; as url) {
-        <a [href]="url" [attr.data-print-text]="url.replace('https://', '')" target="_blank" rel="noopener noreferrer">{{
-          project().title
-        }}</a>
+        <a
+          [href]="url"
+          [attr.data-print-text]="url.replace('https://', '')"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ project().title }}</a
+        >
       } @else {
         {{ project().title }}
       }
@@ -27,7 +31,7 @@
 
   @if (project().stack.length > 0) {
     <div class="project-card__stack">
-      <h4 class="project-card__stack-title">사용 기술</h4>
+      <h4 class="project-card__stack-title">{{ stackTitle() }}</h4>
       <ul class="tag-list" role="list">
         @for (tech of project().stack; track tech) {
           <li class="tag">{{ tech }}</li>

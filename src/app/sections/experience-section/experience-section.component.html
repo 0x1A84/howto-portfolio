@@ -1,6 +1,6 @@
 <section class="sheet" id="experience" aria-labelledby="experience-title">
   <div class="container sheet__grid">
-    <h2 class="sheet__title" id="experience-title">경력</h2>
+    <h2 class="sheet__title" id="experience-title">{{ ui().sections.experience }}</h2>
 
     <div class="experience-groups sheet__body">
       @for (group of groups(); track group.id; let first = $first) {
@@ -23,7 +23,7 @@
                     <p class="experience-item__role">{{ item.role }}</p>
                   }
                   <p class="experience-item__period">
-                    <app-period [value]="item.period" />
+                    <app-period [value]="item.period" [to]="ui().periodTo" />
                   </p>
                 </div>
                 @if (item.duties.length > 0) {

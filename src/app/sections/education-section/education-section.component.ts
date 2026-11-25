@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { PeriodComponent } from '../../shared/period/period.component';
-import { Education } from '../../data/portfolio.model';
+import { Education, UiLabels } from '../../data/portfolio.model';
 
 @Component({
   selector: 'app-education-section',
@@ -12,4 +12,5 @@ import { Education } from '../../data/portfolio.model';
 export class EducationSectionComponent {
   readonly education = input.required<Education[]>();
   readonly note = input.required<string>();
+  readonly ui = input.required<UiLabels>();
 }

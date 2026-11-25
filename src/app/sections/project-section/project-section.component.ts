@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { Project } from '../../data/portfolio.model';
+import { Project, UiLabels } from '../../data/portfolio.model';
 import { ProjectCardComponent } from './project-card/project-card.component';
 
 @Component({
@@ -11,4 +11,5 @@ import { ProjectCardComponent } from './project-card/project-card.component';
 })
 export class ProjectSectionComponent {
   readonly projects = input.required<Project[]>();
+  readonly ui = input.required<UiLabels>();
 }

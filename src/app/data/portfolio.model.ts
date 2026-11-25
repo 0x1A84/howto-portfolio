@@ -1,9 +1,14 @@
+export type Lang = 'ko' | 'en';
+
 export interface Portfolio {
+  lang: Lang;
+  ui: UiLabels; // 템플릿에 들어가는 화면 문구
   profile: {
     name: string;
     handle: string;
-    // printSrc: 인쇄와 PDF용. 화면의 혼합 모드 색조를 미리 입힌 파일 (PDF에서 mix-blend-mode가 깨지기 때문)
-    photo: { src: string; printSrc: string; alt: string; width: number; height: number };
+    // src: 원본. 화면에서는 CSS로 색조를 입히고, A4 인쇄에서는 그대로 보여 줌
+    // exportSrc: 웹 디자인 PDF(export:pdf)용. 화면의 혼합 모드 색조를 미리 입힌 파일 (PDF에서 mix-blend-mode가 깨지기 때문)
+    photo: { src: string; exportSrc: string; alt: string; width: number; height: number };
     tagline: string; // 머리말의 한 줄 소개
     summary: string; // 소개 문단
     links: ContactLink[];
@@ -20,6 +25,27 @@ export interface Portfolio {
   siteUrl: string; // 인쇄본 머리말에 찍을 웹 주소
   repoUrl: string; // footer의 저장소 링크
   updatedAt: string; // ISO 날짜. footer와 인쇄본에 표시
+  navTitle: string; // 상단 내비게이션 왼쪽 글자 (영어)
+}
+
+// 언어마다 다른 화면 문구. 콘텐츠가 아닌 제목, 버튼, 표 머리 같은 글자를 모읍니다.
+export interface UiLabels {
+  pageTitle: string; // <title>, og:title
+  description: string; // meta description, og:description
+  ogLocale: string; // ko_KR, en_US
+  skipLink: string;
+  navLabel: string; // 내비게이션 aria-label
+  sections: { experience: string; skills: string; projects: string; education: string; resume: string };
+  // 다른 언어 페이지로 가는 링크. path는 라우터 경로('/', '/en')
+  langSwitch: { path: string; label: string; lang: Lang; ariaLabel: string };
+  printButton: string;
+  printHint: string;
+  printWebLabel: string; // 인쇄본 머리말의 '웹 버전'
+  asOf: { before: string; after: string }; // 인쇄본 갱신일 앞뒤 글자: '{날짜} 기준', 'As of {date}'
+  periodTo: string; // 기간을 보조 기술로 읽을 때 시작과 끝 사이 말: '부터', 'to'
+  skillsHead: { area: string; items: string };
+  gpa: string; // '평점', 'GPA'
+  stackTitle: string; // '사용 기술'
 }
 
 export interface ExperienceGroup {
@@ -56,7 +82,7 @@ export interface Education {
   major: string;
   period: string;
   status?: string;
-  gpa?: string; // 평점. 화면에는 '평점 3.87'로 표시
+  gpa?: string; // 평점. 화면에는 ui.gpa와 함께 '평점 3.87'로 표시
 }
 
 export interface ContactLink {

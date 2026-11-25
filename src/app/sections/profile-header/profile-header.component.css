@@ -1,6 +1,9 @@
-/* 머리말: 이름이 울트라마린 필드를 가로지르며 겹쳐 찍힌 글자처럼 색이 바뀝니다. */
+/* 머리말: 이름이 울트라마린 필드를 가로지르며 겹쳐 찍힌 글자처럼 색이 바뀝니다.
+   좁은 화면에서는 필드를 화면 너비 가득한 사진 띠로 맨 위에 두고, 이름은 그 아래 종이 위에 둡니다. */
 .profile {
   overflow: clip;
+  /* 필드 사진 너비를 스크롤바를 뺀 실제 화면 너비(cqw)로 계산하기 위한 컨테이너입니다. */
+  container-type: inline-size;
 }
 
 .profile__grid {
@@ -8,14 +11,16 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: var(--space-2xl) auto var(--space-xl) auto auto auto auto var(--space-2xl);
+  grid-template-rows: auto auto var(--space-xl) auto auto auto auto var(--space-2xl);
   column-gap: var(--gap-columns);
 }
 
 .profile__field {
-  grid-column: 5 / -1;
-  grid-row: 1 / 4;
-  margin-inline-end: calc(-1 * var(--bleed));
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-inline: calc(-1 * var(--gutter));
+  aspect-ratio: 16 / 10;
+  max-height: 24rem;
   background: var(--color-field);
 }
 
@@ -24,6 +29,7 @@
   grid-column: 1 / -1;
   grid-row: 2;
   max-width: none;
+  margin-top: var(--space-xl);
   font-size: clamp(4rem, 9vw, 8.5rem);
   line-height: 0.9;
   letter-spacing: -0.045em;
@@ -31,6 +37,7 @@
 }
 
 .profile__overprint {
+  display: none;
   position: absolute;
   inset: 0;
   color: var(--color-field-ink);
@@ -105,11 +112,10 @@
   overflow: hidden;
 }
 
-/* 필드는 오른쪽으로 화면 밖까지 넘치므로, 사진은 화면 오른쪽 끝에서 끝나게 잘라 간판이 보이게 합니다. */
 .profile__field-image {
   position: absolute;
-  inset: 0 auto 0 0;
-  width: calc(100% - var(--bleed) + var(--gutter) + max(0px, (100vw - var(--container)) / 2));
+  inset: 0;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 60% 50%;
@@ -154,7 +160,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap-columns);
-  padding-top: var(--space-3xl);
+  padding-top: var(--space-xl);
 }
 
 /* 사진: 흑백으로 바꾼 뒤 어두운 부분에만 울트라마린에서 빨강으로 넘어가는 그라데이션을 입힙니다. */
@@ -173,6 +179,11 @@
   height: auto;
   aspect-ratio: 206 / 264;
   filter: grayscale(1) contrast(1.2) brightness(1.04);
+}
+
+/* 색조를 미리 입힌 사진은 웹 디자인 PDF에서만 씁니다 (export.css). */
+.profile__photo-image--baked {
+  display: none;
 }
 
 .profile__photo::after {
@@ -198,7 +209,29 @@
   }
 
   .profile__field {
+    grid-column: 5 / -1;
     grid-row: 1 / -1;
+    margin-inline: 0 calc(-1 * var(--bleed));
+    aspect-ratio: auto;
+    max-height: none;
+  }
+
+  /* 필드는 오른쪽으로 화면 밖까지 넘치므로, 사진은 화면 오른쪽 끝에서 끝나게 잘라 간판이 보이게 합니다. */
+  .profile__field-image {
+    inset: 0 auto 0 0;
+    width: calc(100% - var(--bleed) + var(--gutter) + max(0px, (100cqw - var(--container)) / 2));
+  }
+
+  .profile__name {
+    margin-top: 0;
+  }
+
+  .profile__overprint {
+    display: block;
+  }
+
+  .profile__summary {
+    padding-top: var(--space-3xl);
   }
 
   .profile__tagline {
@@ -282,6 +315,7 @@
   .profile__name {
     grid-column: 1;
     grid-row: 1;
+    margin-top: 0;
     font-size: var(--text-display);
     line-height: 1;
   }
@@ -341,7 +375,7 @@
     margin: calc(0.3 * var(--text-md)) 0 0;
   }
 
-  /* PDF에서 혼합 모드가 깨지므로 색조를 미리 입힌 파일을 씁니다. */
+  /* A4 인쇄: 색조 없이 원본 사진을 그대로 보여 줍니다. */
   .profile__photo::after {
     content: none;
   }

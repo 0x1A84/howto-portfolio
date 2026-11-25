@@ -18,9 +18,9 @@
 
     <div class="profile__actions screen-only">
       <div class="profile__buttons">
-        <app-print-button />
+        <app-print-button [label]="ui().printButton" />
       </div>
-      <p class="profile__hint">인쇄 대화상자에서 ‘머리글과 바닥글’을 끄면 깔끔하게 인쇄됩니다.</p>
+      <p class="profile__hint">{{ ui().printHint }}</p>
     </div>
 
     <ul class="profile__links" role="list">
@@ -40,16 +40,20 @@
   </div>
 
   <div class="print-only profile__print-meta">
-    <p>웹 버전 {{ siteUrl() }}</p>
+    <p>{{ ui().printWebLabel }} {{ siteUrl() }}</p>
     <p>
-      <time [attr.datetime]="updatedAt()">{{ updatedAt() | koDate }}</time> 기준
+      {{ ui().asOf.before
+      }}<time [attr.datetime]="updatedAt()">{{
+        lang() === "en" ? (updatedAt() | enDate) : (updatedAt() | koDate)
+      }}</time
+      >{{ ui().asOf.after }}
     </p>
   </div>
 
   <div class="container profile__summary">
     <div class="profile__photo">
       <img
-        class="profile__photo-image screen-only"
+        class="profile__photo-image profile__photo-image--live"
         [src]="profile().photo.src"
         [alt]="profile().photo.alt"
         [width]="profile().photo.width"
@@ -57,8 +61,8 @@
         decoding="async"
       />
       <img
-        class="profile__photo-image print-only"
-        [src]="profile().photo.printSrc"
+        class="profile__photo-image profile__photo-image--baked"
+        [src]="profile().photo.exportSrc"
         [alt]="profile().photo.alt"
         [width]="profile().photo.width"
         [height]="profile().photo.height"

@@ -287,7 +287,8 @@ src/
       print-button/
       print.service.ts
 public/
-  images/                 # icon.svg, og-image.png
+  favicon.svg  favicon.ico  apple-touch-icon.png   # 개인 로고 (Grid 2×2)
+  images/                 # og-image.png
   fonts/
   files/                  # resume.pdf (references/에서 복사). portfolio.pdf는 빌드 때 생성
 scripts/

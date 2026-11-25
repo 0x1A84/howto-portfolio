@@ -111,7 +111,7 @@ test.describe('인쇄', () => {
     for (const element of await page.locator('.screen-only').all()) {
       await expect(element).toBeHidden();
     }
-    await expect(page.locator('.profile__print-meta')).toContainText(PORTFOLIO.siteUrl);
+    await expect(page.locator('.profile__print-meta p').first()).toHaveText('웹 버전 0x1a84ff.github.io');
     await expect(page.locator('.profile__print-meta')).toContainText('2026년 11월 25일 기준');
   });
 

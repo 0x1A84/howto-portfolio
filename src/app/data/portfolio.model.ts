@@ -22,7 +22,7 @@ export interface Portfolio {
   education: Education[];
   educationNote: string; // 학력 목록 아래 문단
   resume: { label: string; href: string } | null;
-  siteUrl: string; // 인쇄본 머리말에 찍을 웹 주소
+  siteUrl: string; // 링크 공유에 쓰는 페이지 주소
   repoUrl: string; // footer의 저장소 링크
   updatedAt: string; // ISO 날짜. footer와 인쇄본에 표시
   navTitle: string; // 상단 내비게이션 왼쪽 글자 (영어)

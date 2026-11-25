@@ -1,5 +1,7 @@
 import { Portfolio } from './portfolio.model';
 
+export const PRINT_WEB_ADDRESS = '0x1a84ff.github.io';
+
 // 원본은 PORTFOLIO.md입니다. 내용을 바꾸면 이 파일도 같은 커밋에서 함께 고칩니다.
 // 영어판은 portfolio.data.en.ts(원본 PORTFOLIO.en.md)이며, 사실이 바뀌면 두 언어를 함께 고칩니다.
 export const PORTFOLIO: Portfolio = {

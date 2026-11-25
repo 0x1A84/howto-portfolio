@@ -40,7 +40,7 @@
   </div>
 
   <div class="print-only profile__print-meta">
-    <p>{{ ui().printWebLabel }} {{ siteUrl() }}</p>
+    <p>{{ ui().printWebLabel }} {{ printWebAddress }}</p>
     <p>
       {{ ui().asOf.before
       }}<time [attr.datetime]="updatedAt()">{{

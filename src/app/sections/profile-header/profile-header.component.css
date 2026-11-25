@@ -205,22 +205,18 @@
 
 @media screen and (width < 60rem) {
   .profile__grid {
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
   }
 
   .profile__field {
-    grid-row: 1 / 4;
+    grid-row: 1 / 5;
     aspect-ratio: auto;
     max-height: none;
   }
 
-  .profile__field-image,
-  .profile__credit {
+  .profile__github,
+  .profile__links:not(:has(> li:not(.profile__github))) {
     display: none;
-  }
-
-  .profile__field::after {
-    content: none;
   }
 
   .profile__name,
@@ -243,7 +239,7 @@
 
   .profile__actions {
     grid-row: 3;
-    padding-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
   }
 
   .profile__actions app-print-button {
@@ -259,7 +255,34 @@
   }
 
   .profile__links {
+    grid-row: 5;
+  }
+
+  .profile__credit {
     grid-row: 4;
+    margin: 0 0 var(--space-sm);
+    color: var(--color-field-ink);
+    text-align: end;
+  }
+
+  .profile__credit a:focus-visible {
+    outline-color: var(--color-field-ink);
+  }
+
+  .profile__summary {
+    display: flow-root;
+  }
+
+  .profile__photo {
+    float: left;
+    width: clamp(4.5rem, 24cqw, 8rem);
+    margin: 0 var(--space-md) var(--space-xs) 0;
+  }
+
+  .profile__summary p {
+    max-width: none;
+    font-size: calc(var(--text-md) + 2px);
+    overflow-wrap: anywhere;
   }
 }
 

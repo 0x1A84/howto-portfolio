@@ -25,7 +25,7 @@
 
     <ul class="profile__links" role="list">
       @for (link of profile().links; track link.href) {
-        <li>
+        <li [class.profile__github]="link.kind === 'github'">
           <a class="profile__link" [href]="link.href" target="_blank" rel="noopener noreferrer">{{ link.printText }}</a>
           <span class="profile__link-label">{{ link.label }}</span>
         </li>

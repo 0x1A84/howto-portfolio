@@ -14,7 +14,7 @@ test.describe('화면', () => {
   }
 
   for (const path of ['./', './en/']) {
-    test(`${path} 모바일 머리말은 사진 없이 파란 배경에 이름과 인쇄 버튼을 배치한다`, async ({ page }) => {
+    test(`${path} 모바일에서 배경 사진과 소개를 표시하고 GitHub 링크를 숨긴다`, async ({ page }) => {
       await page.setViewportSize({ width: 360, height: 800 });
       await page.goto(path);
 
@@ -22,18 +22,32 @@ test.describe('화면', () => {
       const name = page.locator('.profile__name');
       const printButton = page.locator('.profile__actions button');
       await expect(field).toHaveCSS('background-color', 'oklch(0.44 0.2 266)');
-      await expect(page.locator('.profile__field-image')).toBeHidden();
-      await expect(page.locator('.profile__credit')).toBeHidden();
+      await expect(page.locator('.profile__field-image')).toBeVisible();
+      await page.locator('.profile__field-image').evaluate((image: HTMLImageElement) => image.decode());
+      await expect(page.locator('.profile__credit')).toBeVisible();
+      for (const link of await page.locator('a[href^="https://github.com/"]').all()) {
+        await expect(link).toBeHidden();
+      }
       await expect(name).toBeVisible();
       await expect(printButton).toBeVisible();
 
       const fieldBounds = (await field.boundingBox())!;
       const nameBounds = (await name.boundingBox())!;
       const buttonBounds = (await printButton.boundingBox())!;
-      const linksBounds = (await page.locator('.profile__links').boundingBox())!;
+      await page.evaluate(() => document.fonts.ready);
+      const photoBounds = (await page.locator('.profile__photo').boundingBox())!;
+      const [firstLine, ...lines] = await page.locator('.profile__summary p').evaluate((paragraph) => {
+        const range = document.createRange();
+        range.selectNodeContents(paragraph);
+        return Array.from(range.getClientRects(), ({ left, right, top }) => ({ left, right, top }));
+      });
       expect(nameBounds.y).toBeGreaterThanOrEqual(fieldBounds.y);
       expect(buttonBounds.y + buttonBounds.height).toBeLessThanOrEqual(fieldBounds.y + fieldBounds.height);
-      expect(linksBounds.y).toBeGreaterThanOrEqual(fieldBounds.y + fieldBounds.height);
+      expect(firstLine.left).toBeGreaterThanOrEqual(photoBounds.x + photoBounds.width);
+      expect(firstLine.top).toBeLessThan(photoBounds.y + photoBounds.height);
+      const lineBelowPhoto = lines.find((line) => line.top >= photoBounds.y + photoBounds.height);
+      expect(lineBelowPhoto?.left).toBeCloseTo(photoBounds.x);
+      expect(Math.max(firstLine.right, ...lines.map((line) => line.right))).toBeLessThanOrEqual(360);
     });
   }
 
